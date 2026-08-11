@@ -1,0 +1,33 @@
+{% load static %}<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Panel{% endblock %} | Riho Django</title>
+  <link rel="icon" href="{% static 'images/favicon.png' %}">
+  <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
+  <link rel="stylesheet" href="{% static 'css/vendors/feather-icon.css' %}">
+  <link rel="stylesheet" href="{% static 'css/vendors/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link id="color" rel="stylesheet" href="{% static 'css/color-1.css' %}">
+  <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+  {% block extra_css %}{% endblock %}
+</head>
+<body>
+<div class="loader-wrapper"><div class="loader"><div class="loader4"></div></div></div>
+<div class="page-wrapper compact-wrapper" id="pageWrapper">
+  {% include 'includes/navbar.html' %}
+  <div class="page-body-wrapper">{% include 'includes/sidebar.html' %}
+    <div class="page-body"><div class="container-fluid">
+      {% include 'includes/breadcrumbs.html' %}{% include 'includes/messages.html' %}
+      {% block content %}{% endblock %}
+    </div></div>
+    {% include 'includes/footer.html' %}
+  </div>
+</div>
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/icons/feather-icon/feather.min.js' %}"></script>
+<script src="{% static 'js/icons/feather-icon/feather-icon.js' %}"></script>
+<script src="{% static 'js/config.js' %}"></script><script src="{% static 'js/sidebar-menu.js' %}"></script><script src="{% static 'js/script.js' %}"></script>
+{% block extra_js %}{% endblock %}
+</body></html>
