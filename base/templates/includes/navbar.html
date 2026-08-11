@@ -1,0 +1,10 @@
+{% load static %}<div class="page-header"><div class="header-wrapper row m-0">
+  <div class="header-logo-wrapper col-auto p-0"><a href="{% url 'dashboard' %}"><img class="img-fluid for-light" src="{% static 'images/logo/logo_dark.png' %}" alt="Riho"><img class="img-fluid for-dark" src="{% static 'images/logo/logo.png' %}" alt="Riho"></a><div class="toggle-sidebar"><i data-feather="align-center"></i></div></div>
+  <div class="left-header col p-0"><h4 class="f-w-600 mb-0">{% block page_title %}Panel administrativo{% endblock %}</h4></div>
+  <div class="nav-right col-auto ms-auto"><ul class="nav-menus"><li><div class="mode" title="Cambiar modo claro/oscuro"><i class="moon" data-feather="moon"></i></div></li>
+    <li class="profile-nav onhover-dropdown pe-0 py-0"><div class="media profile-media">
+      {% if request.user.fotografia %}<img class="b-r-10 img-40" src="{{ request.user.fotografia.url }}" alt="Avatar">{% else %}<img class="b-r-10 img-40" src="{% static 'images/dashboard/profile.png' %}" alt="Avatar predeterminado">{% endif %}
+      <div class="media-body"><span>{{ request.user.nombre_completo }}</span><p class="mb-0">{{ request.user.roles }} <i class="middle fa fa-angle-down"></i></p></div></div>
+      <ul class="profile-dropdown onhover-show-div"><li><a href="{% url 'usuarios:perfil' %}"><i data-feather="user"></i><span>Perfil</span></a></li><li><form method="post" action="{% url 'logout' %}">{% csrf_token %}<button class="btn p-0" type="submit"><i data-feather="log-out"></i> Cerrar sesión</button></form></li></ul>
+    </li></ul></div>
+</div></div>
