@@ -4,8 +4,15 @@
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}Panel{% endblock %} | Riho Django</title>
   <link rel="icon" href="{% static 'images/favicon.png' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}">
+  <link rel="stylesheet" href="{% static 'css/vendors/icofont.css' %}">
+  <link rel="stylesheet" href="{% static 'css/vendors/themify.css' %}">
+  <link rel="stylesheet" href="{% static 'css/vendors/flag-icon.css' %}">
   <link rel="stylesheet" href="{% static 'css/vendors/feather-icon.css' %}">
+  <link rel="stylesheet" href="{% static 'css/vendors/scrollbar.css' %}">
   <link rel="stylesheet" href="{% static 'css/vendors/bootstrap.css' %}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <link id="color" rel="stylesheet" href="{% static 'css/color-1.css' %}">
@@ -17,10 +24,13 @@
 <div class="page-wrapper compact-wrapper" id="pageWrapper">
   {% include 'includes/navbar.html' %}
   <div class="page-body-wrapper">{% include 'includes/sidebar.html' %}
-    <div class="page-body"><div class="container-fluid">
-      {% include 'includes/breadcrumbs.html' %}{% include 'includes/messages.html' %}
-      {% block content %}{% endblock %}
-    </div></div>
+    <div class="page-body">
+      <div class="container-fluid">{% include 'includes/breadcrumbs.html' %}</div>
+      <div class="container-fluid">
+        {% include 'includes/messages.html' %}
+        {% block content %}{% endblock %}
+      </div>
+    </div>
     {% include 'includes/footer.html' %}
   </div>
 </div>
@@ -28,6 +38,8 @@
 <script src="{% static 'js/bootstrap/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'js/icons/feather-icon/feather.min.js' %}"></script>
 <script src="{% static 'js/icons/feather-icon/feather-icon.js' %}"></script>
+<script src="{% static 'js/scrollbar/simplebar.js' %}"></script>
+<script src="{% static 'js/scrollbar/custom.js' %}"></script>
 <script src="{% static 'js/config.js' %}"></script><script src="{% static 'js/sidebar-menu.js' %}"></script><script src="{% static 'js/script.js' %}"></script>
 {% block extra_js %}{% endblock %}
 </body></html>

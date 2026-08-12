@@ -12,7 +12,18 @@ class EstiloRihoMixin:
 class FormularioAutenticacion(EstiloRihoMixin, AuthenticationForm):
     error_messages = {"invalid_login": "El usuario o la contraseña son incorrectos.", "inactive": "Esta cuenta está inactiva."}
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs); self.aplicar_estilos()
+        super().__init__(*args, **kwargs)
+        self.fields["username"].widget.attrs.update({
+            "class": "form-control",
+            "placeholder": "Ingrese su nombre de usuario",
+            "autocomplete": "username",
+            "autofocus": True,
+        })
+        self.fields["password"].widget.attrs.update({
+            "class": "form-control",
+            "placeholder": "*********",
+            "autocomplete": "current-password",
+        })
 
 class UsuarioCreacionForm(EstiloRihoMixin, UserCreationForm):
     groups = forms.ModelMultipleChoiceField(Group.objects.all(), required=False, label="Roles", widget=forms.SelectMultiple(attrs={"class": "form-select"}))
