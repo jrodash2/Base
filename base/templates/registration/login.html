@@ -1,7 +1,85 @@
-{% load static %}<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Iniciar sesión | Riho Django</title><link rel="stylesheet" href="{% static 'css/vendors/bootstrap.css' %}"><link rel="stylesheet" href="{% static 'css/style.css' %}"><link rel="stylesheet" href="{% static 'css/responsive.css' %}"></head><body>
-<div class="container-fluid p-0"><div class="row m-0"><div class="col-12 p-0"><div class="login-card login-dark"><div><div><a class="logo" href="{% url 'login' %}"><img class="img-fluid for-light" src="{% static 'images/logo/logo_dark.png' %}" alt="Riho"><img class="img-fluid for-dark" src="{% static 'images/logo/logo.png' %}" alt="Riho"></a></div>
-<div class="login-main"><form class="theme-form" method="post" novalidate>{% csrf_token %}<h4>Iniciar sesión</h4><p>Ingrese su usuario y contraseña</p>
-{% if form.non_field_errors %}<div class="alert alert-danger">{{ form.non_field_errors }}</div>{% endif %}
-{% for field in form %}<div class="form-group"><label class="col-form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>{{ field }}{% for error in field.errors %}<div class="text-danger small">{{ error }}</div>{% endfor %}</div>{% endfor %}
-{% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}<div class="form-group mb-0"><a class="link" href="{% url 'password_reset' %}">¿Olvidó su contraseña?</a><button class="btn btn-primary btn-block w-100 mt-3" type="submit">Ingresar</button></div></form></div></div></div></div></div></div>
-</body></html>
+{% load static %}<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Acceso al sistema">
+  <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
+  <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
+  <title>Iniciar sesión | Riho Django</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/vendors/icofont.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/vendors/themify.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/vendors/flag-icon.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/vendors/feather-icon.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/vendors/bootstrap.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <link id="color" rel="stylesheet" href="{% static 'css/color-1.css' %}" media="screen">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/responsive.css' %}">
+</head>
+<body>
+  <div class="container-fluid p-0">
+    <div class="row m-0">
+      <div class="col-12 p-0">
+        <div class="login-card login-dark">
+          <div>
+            <div>
+              <a class="logo" href="{% url 'login' %}">
+                <img class="img-fluid for-dark" src="{% static 'images/logo/logo.png' %}" alt="Riho">
+                <img class="img-fluid for-light" src="{% static 'images/logo/logo_dark.png' %}" alt="Riho">
+              </a>
+            </div>
+            <div class="login-main">
+              <form class="theme-form" method="post" novalidate>
+                {% csrf_token %}
+                <h4>Iniciar sesión</h4>
+                <p>Ingrese su usuario y contraseña</p>
+                {% if form.non_field_errors %}
+                  <div class="alert alert-danger" role="alert">
+                    {% for error in form.non_field_errors %}<div>{{ error }}</div>{% endfor %}
+                  </div>
+                {% endif %}
+                <div class="form-group">
+                  <label class="col-form-label" for="{{ form.username.id_for_label }}">Usuario</label>
+                  {{ form.username }}
+                  {% for error in form.username.errors %}<div class="invalid-feedback d-block">{{ error }}</div>{% endfor %}
+                </div>
+                <div class="form-group">
+                  <label class="col-form-label" for="{{ form.password.id_for_label }}">Contraseña</label>
+                  <div class="form-input position-relative">
+                    {{ form.password }}
+                    <div class="show-hide"><span class="show"></span></div>
+                  </div>
+                  {% for error in form.password.errors %}<div class="invalid-feedback d-block">{{ error }}</div>{% endfor %}
+                </div>
+                {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
+                <div class="form-group mb-0">
+                  <div class="checkbox p-0">
+                    <input id="checkbox1" name="remember" type="checkbox">
+                    <label class="text-muted" for="checkbox1">Recordar acceso</label>
+                  </div>
+                  <a class="link" href="{% url 'password_reset' %}">¿Olvidó su contraseña?</a>
+                  <div class="text-end mt-3">
+                    <button class="btn btn-primary btn-block w-100" type="submit">Ingresar</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'js/icons/feather-icon/feather.min.js' %}"></script>
+  <script src="{% static 'js/icons/feather-icon/feather-icon.js' %}"></script>
+  <script src="{% static 'js/config.js' %}"></script>
+  <script src="{% static 'js/login.js' %}"></script>
+  <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
