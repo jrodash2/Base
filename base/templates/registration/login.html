@@ -5,9 +5,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Acceso al sistema">
-  <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
-  <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
-  <title>Iniciar sesión | Riho Django</title>
+  <link rel="icon" href="{% if configuracion_sistema.favicon %}{{ configuracion_sistema.favicon.url }}{% else %}{% static 'images/favicon.png' %}{% endif %}" type="image/x-icon">
+  <link rel="shortcut icon" href="{% if configuracion_sistema.favicon %}{{ configuracion_sistema.favicon.url }}{% else %}{% static 'images/favicon.png' %}{% endif %}" type="image/x-icon">
+  <title>Iniciar sesión | {{ configuracion_sistema.nombre_sistema|default:"Sistema base" }}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
@@ -20,6 +20,7 @@
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
   <link id="color" rel="stylesheet" href="{% static 'css/color-1.css' %}" media="screen">
   <link rel="stylesheet" type="text/css" href="{% static 'css/responsive.css' %}">
+  <style>:root{--color-institucional-primario:{{ configuracion_sistema.color_primario|default:'#006666' }};--color-institucional-secundario:{{ configuracion_sistema.color_secundario|default:'#FF6150' }};--theme-deafult:var(--color-institucional-primario);--theme-secondary:var(--color-institucional-secundario)}</style>
 </head>
 <body>
   <div class="container-fluid p-0">
@@ -29,15 +30,15 @@
           <div>
             <div>
               <a class="logo" href="{% url 'login' %}">
-                <img class="img-fluid for-dark" src="{% static 'images/logo/logo.png' %}" alt="Riho">
-                <img class="img-fluid for-light" src="{% static 'images/logo/logo_dark.png' %}" alt="Riho">
+                {% if configuracion_sistema.logo_secundario %}<img class="img-fluid for-dark" src="{{ configuracion_sistema.logo_secundario.url }}" alt="{{ configuracion_sistema.nombre_institucion }}">{% else %}<img class="img-fluid for-dark" src="{% static 'images/logo/logo.png' %}" alt="Logo">{% endif %}
+                {% if configuracion_sistema.logo_primario %}<img class="img-fluid for-light" src="{{ configuracion_sistema.logo_primario.url }}" alt="{{ configuracion_sistema.nombre_institucion }}">{% else %}<img class="img-fluid for-light" src="{% static 'images/logo/logo_dark.png' %}" alt="Logo">{% endif %}
               </a>
             </div>
             <div class="login-main">
               <form class="theme-form" method="post" novalidate>
                 {% csrf_token %}
                 <h4>Iniciar sesión</h4>
-                <p>Ingrese su usuario y contraseña</p>
+                <p>{{ configuracion_sistema.nombre_institucion|default:"Ingrese su usuario y contraseña" }}</p>
                 {% if form.non_field_errors %}
                   <div class="alert alert-danger" role="alert">
                     {% for error in form.non_field_errors %}<div>{{ error }}</div>{% endfor %}
