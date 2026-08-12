@@ -21,6 +21,7 @@
 </head>
 <body>
 <div class="loader-wrapper"><div class="loader"><div class="loader4"></div></div></div>
+<div class="tap-top"><i data-feather="chevrons-up"></i></div>
 <div class="page-wrapper compact-wrapper" id="pageWrapper">
   {% include 'includes/navbar.html' %}
   <div class="page-body-wrapper">{% include 'includes/sidebar.html' %}
@@ -34,6 +35,7 @@
     {% include 'includes/footer.html' %}
   </div>
 </div>
+{% include 'includes/theme_customizer.html' %}
 <script src="{% static 'js/jquery.min.js' %}"></script>
 <script src="{% static 'js/bootstrap/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'js/icons/feather-icon/feather.min.js' %}"></script>
@@ -41,5 +43,6 @@
 <script src="{% static 'js/scrollbar/simplebar.js' %}"></script>
 <script src="{% static 'js/scrollbar/custom.js' %}"></script>
 <script src="{% static 'js/config.js' %}"></script><script src="{% static 'js/sidebar-menu.js' %}"></script><script src="{% static 'js/script.js' %}"></script>
+<script src="{% static 'js/theme-customizer/customizer.js' %}"></script>
 {% block extra_js %}{% endblock %}
 </body></html>
